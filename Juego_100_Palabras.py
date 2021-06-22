@@ -20,19 +20,42 @@ def palabras_del_dia():
     
     for i in data:
         palabra = random.choice(data)
-        print(palabra)
+        print(palabra['español'], '=', palabra['esperanto'])
         contador += 1
         aprendidas.append(palabra)
         data.remove(palabra)
+        
         
         if contador == cantidad_hoy:
             contador = 0 
             break
     
-    return aprendidas and data
+    vocabulario.close()
+    
+    return aprendidas, data
 
 
-#def repaso(): .....
+def repaso():
+    print('Repasemos    ¿Cómo se dice...')
+    while True:
+        repaso_actual = random.choice(aprendidas)
+        print(repaso_actual['español'], '?')
+        respuesta = str(input())
+        if respuesta == repaso_actual['esperanto']:
+            print('Bien!')
+        else:
+            print('¡@^@! Respuesta correcta:', repaso_actual['esperanto'])
+        
+        
+        print('¿Continuar repasando (C) o Salir (S)?')
+        orden = str(input())
+        if orden.upper() == 'C':
+            continue
+        elif orden.upper() == 'S':
+            break
+        else:
+            print('la orden no corresponde a ninguna opción (C/S)')
+            continue
     
 
 
@@ -52,7 +75,7 @@ while True:
     
     palabras_del_dia()
     
-    #acá iría la llamada a la función repaso o examen
+    repaso()
     
     dias += 1
 
