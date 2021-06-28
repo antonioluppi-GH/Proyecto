@@ -1,12 +1,3 @@
-''' El proyecto es un juego en modo de aplicación que sirve para
-aprender vocabulario en un idioma. Este prototipo consta de un
-archivo de 100 palabras en español y esperanto. El usuario elige 
-cada día cuántas palabras nuevas aprenderá, éstas se guardan en 
-la lista de aprendidas y se remueven de las pendientes. Hay exámenes 
-diarios (con fines lúdicos) Al final se puede ver cuánto le llevó 
-completar el desfío.'''
-
-
 import csv
 import random
 
@@ -32,10 +23,10 @@ def palabras_del_dia():
     
     vocabulario.close()
     
-    return aprendidas, data
+    return aprendidas
 
 
-def repaso():
+def repaso(aprendidas):
     print('Repasemos    ¿Cómo se dice...')
     while True:
         repaso_actual = random.choice(aprendidas)
@@ -68,18 +59,19 @@ dias = 0
 aprendidas = []
 
  
+if __name__ == '__main__':
+    while True:
+    
+        print('¡Listo para aprender nuevas palabras!')
+    
+        palabras_del_dia()
+    
+        repaso(aprendidas)
+    
+        dias += 1
 
-while True:
-    
-    print('¡Listo para aprender nuevas palabras!')
-    
-    palabras_del_dia()
-    
-    repaso()
-    
-    dias += 1
+        if len(aprendidas) == 100:
+            print('¡Felicitaciones', usuario, '! completaste 100 palabras')
+            print('Te llevó', dias, 'días')
+            break
 
-    if len(aprendidas) == 100:
-        print('¡Felicitaciones', usuario, '! completaste 100 palabras')
-        print('Te llevó', dias, 'días')
-        break
