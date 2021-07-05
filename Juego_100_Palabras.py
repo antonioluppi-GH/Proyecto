@@ -9,6 +9,7 @@ def palabras_del_dia():
     cantidad_hoy = int(input())
     contador = 0
     
+    aprendidas = []
     for i in data:
         palabra = random.choice(data)
         print(palabra['español'], '=', palabra['esperanto'])
@@ -49,22 +50,19 @@ def repaso(aprendidas):
             continue
     
 
-
-
-print('Bienvenido al desafío de las 100 palabras')
-print('¿Cuál es tu nombre?')
-usuario = str(input())
-
 dias = 0
-aprendidas = []
 
- 
+
 if __name__ == '__main__':
+    print('Bienvenido al desafío de las 100 palabras')
+    print('¿Cuál es tu nombre?')
+    usuario = str(input())
+    
     while True:
     
         print('¡Listo para aprender nuevas palabras!')
     
-        palabras_del_dia()
+        aprendidas = palabras_del_dia()
     
         repaso(aprendidas)
     
